@@ -14,12 +14,13 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import glob
+import user
 import os
 import os.path
 import time
 import Tkinter as tk
 
-base_path = os.path.join(os.path.expanduser('~'), '.grosopad')
+base_path = os.path.join(user.home, '.grosopad')
 
 class Note(object):
     window_count = 0
