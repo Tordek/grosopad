@@ -20,11 +20,12 @@ import time
 import Tkinter as tk
 
 base_path = os.path.join(os.path.expanduser('~'), '.grosopad')
-window_count = 0
 
 class Note(object):
+    window_count = 0
+
     def __init__(self, master, filename=None):
-        window_count += 1
+        Note.window_count += 1
 
         self.master = master
 
@@ -62,8 +63,8 @@ class Note(object):
         os.remove(self.filename)
         self.window.destroy()
 
-        window_count -= 1
-        if window_count == 0:
+        Note.window_count -= 1
+        if Note.window_count == 0:
             Note(self.master)
 
     def store(self, content):
