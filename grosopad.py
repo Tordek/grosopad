@@ -27,18 +27,19 @@ class Note(object):
         self.master = master
 
         root = tk.Toplevel(master)
+        text = tk.Text(root)
+        text.pack(fill=tk.BOTH, expand=1)
+
         root.bind("<Control-n>",
                 lambda e: Note(self.master))
         root.bind("<Control-d>",
                 lambda e: self.delete())
         root.bind("<Control-q>",
                 lambda e: self.quit())
-
-        text = tk.Text(root)
-        text.grid(sticky=tk.NSEW)
-
-        text.bind("<Key>",
+        root.bind("<Control-s>",
                 lambda e: self.save(text.get(1.0, tk.END)))
+        text.bind("<Key>",
+                lambda e: self.store(text.get(1.0, tk.END)))
 
         self.window = root
 
@@ -58,10 +59,13 @@ class Note(object):
         os.remove(self.filename)
         self.window.destroy()
 
-    def save(self, content):
+    def store(self, content):
         self.file = open(self.filename, "w")
         self.file.write(content)
         self.file.close()
+
+    def save(self, content):
+        pass
 
 
 def main():
