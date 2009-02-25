@@ -47,7 +47,7 @@ class Note(object):
 
         self.window = root
 
-        if filename == None:
+        if filename is None:
             filename = os.path.join(base_path, str(time.time()))
         else:
             self.file = open(filename, "r")
