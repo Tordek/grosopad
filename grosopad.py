@@ -72,12 +72,13 @@ class Note(object):
         self.file.close()
 
     def save(self, content):
-        pass
+        pass #TODO: Implementar...
 
 
 def main():
     root = tk.Tk()
     root.withdraw()
+
     if not os.path.exists(base_path):
         os.mkdir(base_path)
 
