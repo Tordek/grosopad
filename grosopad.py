@@ -60,7 +60,9 @@ class Note(object):
         self.master.destroy()
 
     def delete(self):
-        os.remove(self.filename)
+        if os.path.exists(self.filename):
+            os.remove(self.filename)
+
         self.window.destroy()
 
         Note.window_count -= 1
