@@ -51,9 +51,9 @@ class Note(object):
         if filename is None:
             filename = os.path.join(base_path, str(time.time()))
         else:
-            self.file = open(filename, "r")
-            text.insert(tk.END, self.file.read())
-            self.file.close()
+            file = open(filename, "r")
+            text.insert(tk.END, file.read())
+            file.close()
 
         self.filename = filename
 
@@ -71,9 +71,9 @@ class Note(object):
             Note(self.master)
 
     def store(self, content):
-        self.file = open(self.filename, "w")
-        self.file.write(content)
-        self.file.close()
+        file = open(self.filename, "w")
+        file.write(content)
+        file.close()
 
     def save(self, content):
         pass #TODO: Implementar...
