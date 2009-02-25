@@ -19,7 +19,8 @@ import os.path
 import time
 import Tkinter as tk
 
-base_path = '.grosopad'
+base_path = os.path.join(os.path.expanduser('~'), '.grosopad')
+print base_path
 
 class Note(object):
     def __init__(self, master, filename=None):
