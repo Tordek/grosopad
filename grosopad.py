@@ -25,7 +25,6 @@ import Tkinter as tk
 base_path = os.path.join(user.home, '.grosopad')
 
 class Note(object):
-
     def __init__(self, master, filename=None):
         self.master = master
 
