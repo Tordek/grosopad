@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+#
 #    Copyright 2009 Guillermo O. Freschi
 #
 #    This program is free software: you can redistribute it and/or modify
