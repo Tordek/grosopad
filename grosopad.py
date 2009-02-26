@@ -23,11 +23,8 @@ import Tkinter as tk
 base_path = os.path.join(user.home, '.grosopad')
 
 class Note(object):
-    window_count = 0
 
     def __init__(self, master, filename=None):
-        Note.window_count += 1
-
         self.master = master
 
         root = tk.Toplevel(master)
@@ -66,8 +63,7 @@ class Note(object):
 
         self.window.destroy()
 
-        Note.window_count -= 1
-        if Note.window_count == 0:
+        if not self.master.winfo_children():
             Note(self.master)
 
     def store(self, content):
