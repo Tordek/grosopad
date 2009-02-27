@@ -31,6 +31,7 @@ class Note(object):
         root = tk.Toplevel(master)
         text = tk.Text(root)
         text.pack(fill=tk.BOTH, expand=1)
+        text.focus_set()
 
         root.bind("<Control-n>",
                   lambda e: Note(self.master))
