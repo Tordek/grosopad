@@ -41,10 +41,12 @@ class Note(object):
         root.bind("<Control-q>",
                   lambda e: self.quit())
         root.bind("<Control-s>",
-                  lambda e: self.save(text.get(1.0, tk.END)))
+                  lambda e: self.save(text.get(1.0, tk.END),
+                                      tkFileDialog.asksaveasfilename()))
 
         text.bind("<Key>",
-                  lambda e: self.save(text.get(1.0, tk.END), filename))
+                  lambda e: self.save(text.get(1.0, tk.END),
+                                      filename))
 
         self.window = root
 
@@ -67,10 +69,7 @@ class Note(object):
         if not self.master.winfo_children():
             Note(self.master)
 
-    def save(self, content, filename=None):
-        if filename is None:
-            filename = tkFileDialog.asksaveasfilename()
-
+    def save(self, content, filename):
         file = open(filename, "w")
         file.write(content.encode('utf-8'))
         file.close()
