@@ -18,7 +18,6 @@
 import glob
 import user
 import os
-import os.path
 import time
 import Tkinter as tk
 import tkFileDialog
