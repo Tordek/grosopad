@@ -21,6 +21,7 @@ import os
 import os.path
 import time
 import Tkinter as tk
+import tkFileDialog
 
 base_path = os.path.join(user.home, '.grosopad')
 
@@ -43,7 +44,7 @@ class Note(object):
                   lambda e: self.save(text.get(1.0, tk.END)))
 
         text.bind("<Key>",
-                  lambda e: self.store(text.get(1.0, tk.END)))
+                  lambda e: self.save(text.get(1.0, tk.END), self.filename))
 
         self.window = root
 
@@ -68,13 +69,13 @@ class Note(object):
         if not self.master.winfo_children():
             Note(self.master)
 
-    def store(self, content):
-        file = open(self.filename, "w")
-        file.write(content)
-        file.close()
+    def save(self, content, filename=None):
+        if filename is None:
+            filename = tkFileDialog.asksaveasfilename()
 
-    def save(self, content):
-        pass #TODO: Implementar...
+        file = open(filename, "w")
+        file.write(content.encode('utf-8'))
+        file.close()
 
 
 def main():
