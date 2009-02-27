@@ -27,8 +27,6 @@ base_path = os.path.join(user.home, '.grosopad')
 
 class Note(object):
     def __init__(self, master, filename=None):
-        self.master = master
-
         root = tk.Toplevel(master)
         text = tk.Text(root)
         text.pack(fill=tk.BOTH, expand=1)
@@ -41,14 +39,10 @@ class Note(object):
         root.bind("<Control-q>",
                   lambda e: self.quit())
         root.bind("<Control-s>",
-                  lambda e: self.save(text.get(1.0, tk.END),
-                                      tkFileDialog.asksaveasfilename()))
+                  lambda e: self.save(tkFileDialog.asksaveasfilename()))
 
         text.bind("<Key>",
-                  lambda e: self.save(text.get(1.0, tk.END),
-                                      filename))
-
-        self.window = root
+                  lambda e: self.save(filename))
 
         if filename is None:
             filename = os.path.join(base_path, str(time.time()))
@@ -56,6 +50,10 @@ class Note(object):
             file = open(filename, "r")
             text.insert(tk.END, file.read())
             file.close()
+
+        self.master = master
+        self.window = root
+        self.textfield = text
 
     def quit(self):
         self.master.destroy()
@@ -69,7 +67,8 @@ class Note(object):
         if not self.master.winfo_children():
             Note(self.master)
 
-    def save(self, content, filename):
+    def save(self, filename):
+        content = self.textfield.get(1.0, tk.END)
         file = open(filename, "w")
         file.write(content.encode('utf-8'))
         file.close()
