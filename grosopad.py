@@ -31,6 +31,9 @@ class Note(object):
         text.pack(fill=tk.BOTH, expand=1)
         text.focus_set()
 
+        root.protocol("WM_DELETE_WINDOW",
+                      lambda: self.delete(filename))
+
         root.bind("<Control-n>",
                   lambda e: Note(self.master))
         root.bind("<Control-d>",
