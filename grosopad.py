@@ -37,14 +37,14 @@ class Note(object):
         root.bind("<Control-n>",
                   lambda e: Note(self.master))
         root.bind("<Control-d>",
-                  lambda e: self.delete())
+                  lambda e: self.delete(filename))
         root.bind("<Control-q>",
                   lambda e: self.quit())
         root.bind("<Control-s>",
                   lambda e: self.save(text.get(1.0, tk.END)))
 
         text.bind("<Key>",
-                  lambda e: self.save(text.get(1.0, tk.END), self.filename))
+                  lambda e: self.save(text.get(1.0, tk.END), filename))
 
         self.window = root
 
@@ -55,14 +55,12 @@ class Note(object):
             text.insert(tk.END, file.read())
             file.close()
 
-        self.filename = filename
-
     def quit(self):
         self.master.destroy()
 
-    def delete(self):
-        if os.path.exists(self.filename):
-            os.remove(self.filename)
+    def delete(self, filename):
+        if os.path.exists(filename):
+            os.remove(filename)
 
         self.window.destroy()
 
