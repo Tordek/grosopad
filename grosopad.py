@@ -26,21 +26,21 @@ base_path = os.path.join(user.home, '.grosopad')
 
 class Note(object):
     def __init__(self, master, filename=None):
-        root = tk.Toplevel(master)
-        text = tk.Text(root)
+        window = tk.Toplevel(master)
+        text = tk.Text(window)
         text.pack(fill=tk.BOTH, expand=1)
         text.focus_set()
 
-        root.protocol("WM_DELETE_WINDOW",
+        window.protocol("WM_DELETE_WINDOW",
                       lambda: self.delete(filename))
 
-        root.bind("<Control-n>",
+        window.bind("<Control-n>",
                   lambda e: Note(self.master))
-        root.bind("<Control-d>",
+        window.bind("<Control-d>",
                   lambda e: self.delete(filename))
-        root.bind("<Control-q>",
+        window.bind("<Control-q>",
                   lambda e: self.quit())
-        root.bind("<Control-s>",
+        window.bind("<Control-s>",
                   lambda e: self.save(tkFileDialog.asksaveasfilename()))
 
         text.bind("<Key>",
@@ -54,7 +54,7 @@ class Note(object):
             file.close()
 
         self.master = master
-        self.window = root
+        self.window = window
         self.textfield = text
 
     def quit(self):
