@@ -32,16 +32,16 @@ class Note(object):
         text.focus_set()
 
         window.protocol("WM_DELETE_WINDOW",
-                      lambda: self.delete(filename))
+                        lambda: self.delete(filename))
 
         window.bind("<Control-n>",
-                  lambda e: Note(self.master))
+                    lambda e: Note(self.master))
         window.bind("<Control-d>",
-                  lambda e: self.delete(filename))
+                    lambda e: self.delete(filename))
         window.bind("<Control-q>",
-                  lambda e: self.quit())
+                    lambda e: self.quit())
         window.bind("<Control-s>",
-                  lambda e: self.save(tkFileDialog.asksaveasfilename()))
+                    lambda e: self.save(tkFileDialog.asksaveasfilename()))
 
         text.bind("<Key>",
                   lambda e: self.save(filename))
