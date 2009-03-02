@@ -77,7 +77,7 @@ class Note(object):
 
 
 def main():
-    root = tk.Tk()
+    root = tk.Tk(className="Grosopad")
     root.withdraw()
 
     if not os.path.exists(base_path):
